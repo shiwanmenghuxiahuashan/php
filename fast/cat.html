@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cat</title>
+</head>
+
+<body>
+    <script>
+        var Animal = {
+
+　　　　createNew: function(){
+
+　　　　　　var animal = {};
+
+　　　　　　animal.sleep = function(){ console.log(this.name+":睡懒觉"); };
+
+　　　　　　return animal;
+
+　　　　}
+
+　　};
+        var Cat = {
+            ha:'ha?',
+            createNew: function (_name) {
+                var cat =Animal.createNew();
+                
+                cat.name = _name||"大毛";
+
+                cat.makeSound = function () {
+                    console.log(this.name+":喵喵喵");
+                };
+                return cat;
+            }
+        };
+        var xiaohei=Cat.createNew('xiaohei');
+        var damao=Cat.createNew();
+        xiaohei.sleep();
+        xiaohei.makeSound();
+        xiaohei.makeSound=function(){
+            console.log(this.name+":老子吃火锅，你吃火锅底料")
+        }
+        xiaohei.makeSound();
+        damao.makeSound();
+
+
+        console.log(xiaohei.ha)
+    </script>
+</body>
+
+</html>

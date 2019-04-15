@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>第十一章 使用PHP从库Web访问MySQL数据</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1>《PHP和MySQL Web 开发》 第十一章 使用PHP从库Web访问MySQL数据</h1>
+    <div class="container">
+        <p>0-672-31000-X</p>
+        <form action="insert_book.php" method="POST">
+            <table class="table">
+                <tr class="form-group">
+                    <tr>ISBN</tr>
+                    <tr>
+                        <input required="required" name="isbn" type="text" class="form-control"  placeholder="例如：0-672-31000-4">
+                    </tr>
+                </tr>
+                <tr class="form-group">
+                    <tr>author</tr>
+                    <tr>
+                        <input required="required" name="author" type="text" class="form-control" >
+                    </tr>
+                </tr>
+                <tr class="form-group">
+                    <tr>title</tr>
+                    <tr>
+                        <input required="required" name="title" type="text" class="form-control">
+                    </tr>
+                </tr>
+                <tr class="form-group">
+                    <tr>price</tr>
+                    <tr>
+                        <input required="required" name="price" maxlength="7" size="7" type="text" class="form-control" >
+                    </tr>
+                </tr>
+                <tr class="form-group">
+                        <td colspan="2">  <button type="submit" class="btn btn-success">Submit</button></td>
+                    </tr>
+            </table>
+        </form>
+    </div>
+
+
+</body>

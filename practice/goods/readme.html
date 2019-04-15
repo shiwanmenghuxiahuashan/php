@@ -1,0 +1,82 @@
+
+一、建立数据库
+1. 登录数据库
+mysql -u lilei -p:
+
+2.创建名为goods 的数据表
+    <!-- 
+    id int 类型 无符号类型 (unsigned)非空 (not null) 自增 (auto_increment) 主键 (primary key)
+    price 浮点数 最长6位，两位小数 ( double(6,2) )
+
+    int 整型 的每一种都分为 无符号(unsigned) 和有符号(signed) 无符号类型能保存2倍于有符号类型的正整数数据.
+
+    -->
+创建命令:
+    create table goods(
+        id int unsigned not null auto_increment primary key,
+        name varchar(64) not null ,
+        typeid int unsigned not null,
+        price double(6,2) not null,
+        total int unsigned not null,
+        pic varchar(21) not null,
+        note text,
+        addtime int unsigned no null);
+    )
+
+3.查看表结构结构：
+    mysql> describe goods;
+        +---------+----------------------+------+-----+---------+----------------+
+        | Field   | Type                 | Null | Key | Default | Extra          |
+        +---------+----------------------+------+-----+---------+----------------+
+        | id      | int(10) unsigned     | NO   | PRI | NULL    | auto_increment |
+        | name    | varchar(64)          | NO   |     | NULL    |                |
+        | typeid  | int(10) unsigned     | NO   |     | NULL    |                |
+        | price   | double(6,2) unsigned | NO   |     | NULL    |                |
+        | total   | int(10) unsigned     | NO   |     | NULL    |                |
+        | pic     | varchar(32)          | NO   |     | NULL    |                |
+        | note    | text                 | YES  |     | NULL    |                |
+        | addtime | int(10) unsigned     | NO   |     | NULL    |                |
+        +---------+----------------------+------+-----+---------+----------------+
+        
+4.查看建表结构 
+<!-- \G 后面没有 分号！ -->
+show create table 表名 \G
+Create Table: 
+    CREATE TABLE `goods` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `name` varchar(64) NOT NULL,
+    `typeid` int(10) unsigned NOT NULL,
+    `price` double(6,2) unsigned NOT NULL,
+    `total` int(10) unsigned NOT NULL,
+    `pic` varchar(32) NOT NULL,
+    `note` text,
+    `addtime` int(10) unsigned NOT NULL,
+    PRIMARY KEY (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+
+二、创建项目的目录具体文件
+---------
+    |--add.php 商品添加
+    |--edit.php 
+    |--index.php 浏览 
+    |-- action.php 执行商品信息添加修改删除等操作处理
+    |--dbconfig.php 公共配置文件
+    |--menu.php 导航栏
+    |--uploads 上传图片的存放目录
+    |--functions.php 公共函数库文件：图片信息的上传、等比缩放
+    新的：
+    |--addCart.php 添加购物车信息的操作
+
+
+新学习的技术：
+SESSION会话的应用
+
+$_SESSION 超全局数组 可以位置当前用户状态，信息内容是保存在服务器端的
+
+在要使用SESSTION的页面的开头处，要使用 sesstion_start ()函数启动sesstion
+
+三、购物车的具体实现
+--------------------------------------------
+1.准备工作：
+    1.1在menu.php中添加连个超链接，【我的购物车】【清空购物车】
+    1.2在index.php中添加放入购物车的链接

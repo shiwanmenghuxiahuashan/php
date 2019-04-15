@@ -1,0 +1,73 @@
+<h1>
+    php 使用MySQL的操作函数实现单表的信息增删改查
+</h1>
+    
+一、建立数据库
+1. 登录数据库
+mysql -u lilei -p:
+<!-- lilei 的数据库用户只被授权使用了 lileidb 的权限这点要注意 密码：woshilileiXXXX -->
+
+2.创建名为stu的数据表
+字段：新闻ID号，标题，关键字，作者，发布时间，新闻内容
+    <!-- 
+    id int 类型 无符号类型 (unsigned)非空 (not null) 自增 (auto_increment) 主键 (primary key)
+    int 整型 的每一种都分为 无符号(unsigned) 和有符号(signed) 无符号类型能保存2倍于有符号类型的正整数数据.
+    -->
+创建命令:
+
+    mysql> create table news(
+        -> id int unsigned not null auto_increment primary key,
+        -> title varchar(64) not null,
+        -> keywords varchar(64) not null,
+        -> author varchar(64) not null,
+        -> addtime int unsigned not null,
+        -> content text not null);
+    Query OK, 0 rows affected (0.02 sec)
+
+
+3.查看表结构结构：
+    mysql> desc news;
+    +----------+------------------+------+-----+---------+----------------+
+    | Field    | Type             | Null | Key | Default | Extra          |
+    +----------+------------------+------+-----+---------+----------------+
+    | id       | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+    | title    | varchar(64)      | NO   |     | NULL    |                |
+    | keywords | varchar(64)      | NO   |     | NULL    |                |
+    | author   | varchar(64)      | NO   |     | NULL    |                |
+    | addtime  | int(10) unsigned | NO   |     | NULL    |                |
+    | content  | text             | NO   |     | NULL    |                |
+    +----------+------------------+------+-----+---------+----------------+
+    6 rows in set (0.03 sec)
+        
+4.查看建表结构 
+<!-- \G 后面没有 分号！ -->
+show create table 表名 \G
+
+查看建表结构：
+mysql> show create table news \G
+*************************** 1. row ***************************
+       Table: news
+Create Table: CREATE TABLE `news` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  `keywords` varchar(64) NOT NULL,
+  `author` varchar(64) NOT NULL,
+  `addtime` int(10) unsigned NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4
+1 row in set (0.00 sec)
+
+二、创建项目的目录具体文件
+------------------------------------------
+    |--dbconfig.php 公共配置文件
+    |
+    |--menu.php 公共导航栏文件
+    |
+    |--index.php 首页 从数据库中获取数据并显示出来
+    |
+    |--add.php 发布新闻
+    |
+    |--edit.php 编辑新闻的表单页
+    |
+    |--action.php 信息处理界面，实现数据的增删改
