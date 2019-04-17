@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>mysql 学习</title>
-    <style>
-    .btn{
-        width: 120px;
-        height: 34px;
-        line-height: 34px;
-        text-align: center;
-        background: #889900;
-        color: #fff;
-    }
-    </style>
+    <script src="../public/jquery.js"></script>
+    <script src="../public/bootstrap.js"></script>
+    <link rel="stylesheet" href="../public/bootstrap/bootstrap.min.css">
 </head>
 <body>
-    
+   <form action="./api.php?apiType=Insert"  method="POST" style="width:80%;margin:0 auto;">
+    <h1>Insert</h1>
+    <div class="input-group">
+        <span class="input-group-addon">年龄</span>
+        <input name="age" type="text" class="form-control" placeholder="年龄" >
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">姓名</span>
+        <input name="name" type="text" class="form-control" placeholder="姓名">
+      </div>
+            <button class="btn btn-primary " type="submit">提交</button>
+   </form>
+   
 </body>
 </html>
