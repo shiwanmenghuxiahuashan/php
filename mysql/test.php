@@ -1,6 +1,13 @@
 <?php
- $setup_path='./setup.ini';
 
-$setup=parse_ini_file($setup_path);
+function getIni()
+{
+    $ini_path = './setup.ini';
+    return parse_ini_file($ini_path);
+}
 
-var_dump($setup);
+
+$dbConfig = getIni();
+var_dump($dbConfig);
+die();
+// $db =new pdo($dsn,$user,$pwd,array(PDO::ATTR_PERSISTENT=>true));
