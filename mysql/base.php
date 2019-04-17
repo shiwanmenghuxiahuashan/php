@@ -1,6 +1,7 @@
 <?php
 /**封装的基础小功能 */
-class Base{
+class Base
+{
     function __construct()
     { }
     public static function isGet()
