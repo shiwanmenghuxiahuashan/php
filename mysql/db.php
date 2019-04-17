@@ -3,7 +3,6 @@
 class Database
 {
     private static $_instance;
-    private static $parameters;
     private $_connection = null; //数据库连接对象
     private $DB_ini_path = './setup.ini';
     private $DB_driver = "mysql"; //数据库驱动类型
@@ -62,7 +61,6 @@ class Database
     }
     public static function Insert($tableName, $fields, $values)
     {
-        self::$parameters = array();
         $stmt = "";
         $values = split(',', $values);
         foreach ($values as $key => $value) {
@@ -80,7 +78,7 @@ class Database
         $dbh = $_instance->connect();
         //INSERT INTO user(name,age) VALUES(?,?,)
         $sth = $dbh->prepare($sqlexe);
-        // //PDOStatement::execute — 执行一条预处理语句  bool PDOStatement::execute([ array $input_parameters] )
+       //PDOStatement::execute — 执行一条预处理语句  bool PDOStatement::execute([ array $input_parameters] )
         $fact = $sth->execute($values);
 
         return $fact;
