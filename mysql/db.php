@@ -1,5 +1,5 @@
 <?php
-
+// include('./base.php');
 class Database
 {
     private static $_instance;
@@ -59,16 +59,13 @@ class Database
     {
         print_r('query');
     }
-    public static function Insert($tableName, $fields, $values)
+    public static function Insert($tableName='', $fields='', $values=[],$stmt=0)
     {
-        $stmt = "";
-        $values = split(',', $values);
-        foreach ($values as $key => $value) {
-            $stmt .= "?,";
+        
+       
+        if($stmt==0){
+            $stmt=Base::buildStmt(count($values));
         }
-        // string substr( string $string, int $start[, int $length] )
-        //截取 0开始，字符串长度-1结束（其实就是去掉最后一位的 ","）
-        $stmt = substr($stmt, 0, strlen($stmt) - 1);
 
         $sqlexe = "INSERT INTO " . $tableName . "(" . $fields . ") VALUES(" . $stmt . ")";
         // echo $sqlexe;
@@ -76,7 +73,7 @@ class Database
         $_instance = self::init();
 
         $dbh = $_instance->connect();
-        //INSERT INTO user(name,age) VALUES(?,?,)
+        //INSERT INTO user(name,age) VALUES(?,?)
         $sth = $dbh->prepare($sqlexe);
        //PDOStatement::execute — 执行一条预处理语句  bool PDOStatement::execute([ array $input_parameters] )
         $fact = $sth->execute($values);
